@@ -1,0 +1,23 @@
+{
+	"kind": "Deployment",
+	"id": "askray",
+	"cpu": 1,
+	"scale": 1,
+	"memory": 5000,
+	"loadBalancer": {
+		"cdn": true,
+		"targetPort": 3000
+	},
+	"environments": {
+	
+		"dev": {
+			"loadBalancer": {
+				"cdn": false,
+				"targetPort": 3000
+			}
+		},
+		"infra": {
+			"deploy": false
+		}
+	}
+}
