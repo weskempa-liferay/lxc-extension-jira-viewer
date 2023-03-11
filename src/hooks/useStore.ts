@@ -1,25 +1,35 @@
 import { useReducer } from 'react';
 
-const initialState = {
-  initialized: false,
-  projects:[],
-  issues:[],
-  selectedProject:0,
-  title:"example"
+import { Project } from 'jira.js/out/version2/models';
+
+type State = {
+  initialized: boolean;
+  projects: Project[];
+  issues: any[];
+  selectedProject: 0;
+  title: string;
 };
 
-function reducer(state, action) {
+const initialState = {
+  initialized: false,
+  projects: [],
+  issues: [],
+  selectedProject: 0,
+  title: 'example',
+};
+
+function reducer(state: State, action: { type: string; value: any }) {
   switch (action.type) {
     case 'INITIALIZE':
       return { ...state, initialized: action.value };
     case 'PROJECTS':
       return { ...state, projects: action.value };
     case 'SELECTEDPROJECT':
-        return { ...state, selectedProject: action.value };
+      return { ...state, selectedProject: action.value };
     case 'ISSUES':
       return { ...state, issues: action.value };
     case 'TITLE':
-        return { ...state, title: action.value };
+      return { ...state, title: action.value };
     case 'RESET':
       return initialState;
     default:
@@ -29,6 +39,7 @@ function reducer(state, action) {
 
 function useStore() {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   return [state, dispatch];
 }
 
