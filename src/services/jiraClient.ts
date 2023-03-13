@@ -11,10 +11,14 @@ const VersionClient = apiVersion === 'v3' ? Version3Client : Version2Client;
 const jiraClient = new VersionClient({
   host,
   authentication: {
-    basic: { username, password, apiToken },
+    basic: {
+      email: username,
+      apiToken: apiToken
+    }
   },
   newErrorHandling: true,
 } as Config);
+
 
 // Exporting as V3, to avoid typing issue
 
