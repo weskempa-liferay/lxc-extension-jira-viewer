@@ -1,0 +1,4 @@
+jira-iframe-1:
+    name: JiraExtension
+    type: iframe
+    url: https://jirabasic-lctlxc<project>-extprd.lfr.cloud/
