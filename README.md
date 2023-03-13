@@ -2,7 +2,7 @@
 
 LXC Client Extension with Jira Integration using Next 13 and Jira API.
 
-It is critical for teams to explore the practical use of Client Extensions. This is a working version of an LXC Client Extension with Jira integration using Next 13 and the Jira API. This project can be used as a template to work from for further Jira integration or to integrate with similar service outcomes.
+It is increasingly critical for teams to explore the practical use of Client Extensions. To assist in this, more working examples are needed. This is a working version of an LXC Client Extension with Jira integration using Next 13 and the Jira API. This project can be used as a template to work from for further Jira integration or to integrate with similar service outcomes.
 
 ***Huge thanks to Keven Leone for sharing his time and skills to make this 100 times better than the original concept work.***
 
