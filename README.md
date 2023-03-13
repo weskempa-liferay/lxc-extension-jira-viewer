@@ -6,6 +6,8 @@ It is increasingly important for teams to explore the practical use of Client Ex
 
 <img src="./assets/jira-integration.png" alt="drawing"/>
 <img src="./assets/issues.png" alt="drawing"/>
+<img src="./assets/mytasks1.png" alt="drawing"/>
+<img src="./assets/mytasks2.png" alt="drawing"/>
 <img src="./assets/client-extension.png" alt="drawing"/>
 
 ### How to use
