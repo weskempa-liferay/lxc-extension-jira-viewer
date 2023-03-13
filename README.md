@@ -8,6 +8,8 @@ It is increasingly important for teams to explore the practical use of Client Ex
 <img src="./assets/issues.png" alt="drawing"/>
 <img src="./assets/client-extension.png" alt="drawing"/>
 
+Huge thanks to Keven Leone for sharing his time and skills to make this 100 times better than the origianl concept work. 
+
 ### How to use
 
 1. Copy the file `.env.example` and rename it to `.env`
