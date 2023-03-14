@@ -29,17 +29,20 @@ async function getIssues(projectIdOrKey: string) {
   if(searchResult.issues){
     for(const key in searchResult.issues){
 
-      let fields = {issuetype:{name:""},description:""};
+      let fields = {issuetype:{name:""},status:{name:""},description:"",summary:""};
       if(searchResult.issues[key].fields){
         fields = searchResult.issues[key].fields;
       }
+      console.log(fields.summary);
 
       //console.log(searchResult.issues[key]);
 
       const issueObject = {
         id:searchResult.issues[key].id,
         key:searchResult.issues[key].key,
+        status:fields.status.name,
         type:fields.issuetype.name,
+        summary:fields.summary,
         description:fields.description,
       };
 
@@ -68,8 +71,10 @@ export default async function Page({ params: { project } }: PageProps) {
       <Card title='Issues' className="mb-4">
         <Table
           columns={[
-            { key: 'key', width: 100, value: 'Key' },
-            { key: 'type', width: 200, value: 'Type' },
+            { key: 'key', width: 90, value: 'Key' },
+            { key: 'type', width: 150, value: 'Type' },
+            { key: 'status', width: 90, value: 'Status' },
+            { key: 'summary', value: 'Title' },
             { key: 'description', value: 'Description' },
           ]}
           rows={issues}
