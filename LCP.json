@@ -1,6 +1,6 @@
 {
 	"kind": "Deployment",
-	"id": "jirabasic",
+	"id": "jiraviewer",
 	"cpu": 1,
 	"scale": 1,
 	"memory": 5000,
