@@ -9,7 +9,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@mui/material": "^5.11.12",
     "@types/node": "18.14.6",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
