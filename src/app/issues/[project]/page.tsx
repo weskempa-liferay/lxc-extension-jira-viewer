@@ -65,7 +65,7 @@ export default async function Page({ params: { project } }: PageProps) {
     <div className="mt-2">
       <h1 className="title">Issues Types</h1>
 
-      <Card title='Issues'>
+      <Card title='Issues' className="mb-4">
         <Table
           columns={[
             { key: 'key', width: 100, value: 'Key' },
