@@ -18,7 +18,6 @@ async function getIssueTypes(projectIdOrKey: string) {
 }
 
 async function getIssues(projectIdOrKey: string) {
-  console.log("--searchResult--");
 
   const searchResult = await jiraClient.issueSearch.searchForIssuesUsingJql({
     jql: 'project='+projectIdOrKey
@@ -35,7 +34,7 @@ async function getIssues(projectIdOrKey: string) {
         fields = searchResult.issues[key].fields;
       }
 
-      console.log(searchResult.issues[key]);
+      //console.log(searchResult.issues[key]);
 
       const issueObject = {
         id:searchResult.issues[key].id,
