@@ -63,7 +63,7 @@ export default async function Page({ params: { project } }: PageProps) {
 
   return (
     <div className="mt-2">
-      <h1 className="title">Issues Types</h1>
+      <h1 className="title">Issues</h1>
 
       <Card title='Issues' className="mb-4">
         <Table
