@@ -6,6 +6,8 @@ It is increasingly critical for teams to explore the practical use of Client Ext
 
 ***Huge thanks to Keven Leone for sharing his time and skills to make this 100 times better than the original concept work.***
 
+*Suggestions and contributions are welcome! Let's build something great together.*
+
 <img src="./assets/jira-integration.png" alt="drawing"/>
 <img src="./assets/issues.png" alt="drawing"/>
 <img src="./assets/mytasks1.png" alt="drawing"/>
