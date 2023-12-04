@@ -25,9 +25,9 @@ It is increasingly critical for teams to explore the practical use of Client Ext
 1. Go to application menu
 2. Custom Apps > Client Extensions
 3. Plus Sign > Add Iframe
-    3.1 **Name:** Your choice
-    3.2 **URL:** Copy the URL from dev-server or LXC domain
-    3.3 Publish
+- (3.1) **Name:** Your choice
+- (3.2) **URL:** Copy the URL from dev-server or LXC domain
+- (3.3) Publish
 4. Go to a page > edit > find the portlet created > drag it to the page
 
 ### Key Features
