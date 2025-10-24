@@ -24,8 +24,7 @@ async function getIssues(projectIdOrKey: string) {
     jql: 'project='+projectIdOrKey
   });
 
-  let issueArray:Object = [];
-  const issueObject = {};
+  let issueArray: any[] = [];
 
   if(searchResult.issues){
     for(const key in searchResult.issues){
@@ -34,9 +33,6 @@ async function getIssues(projectIdOrKey: string) {
       if(searchResult.issues[key].fields){
         fields = searchResult.issues[key].fields;
       }
-      console.log(fields.summary);
-
-      //console.log(searchResult.issues[key]);
 
       const issueObject = {
         id:searchResult.issues[key].id,
@@ -44,7 +40,9 @@ async function getIssues(projectIdOrKey: string) {
         status:fields.status.name,
         type:fields.issuetype.name,
         summary:fields.summary,
-        description:fields.description,
+        description: typeof fields.description === 'string' 
+          ? fields.description 
+          : (fields.description ? '[Rich text description]' : ''),
       };
 
       issueArray.push(issueObject);

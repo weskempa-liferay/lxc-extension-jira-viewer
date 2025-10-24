@@ -74,7 +74,7 @@ export default async function Page() {
               footer={
                 <footer className="card-footer">
                   <Link
-                    href={`/issues/${project.id}`}
+                    href={`/issues/${project.key}`}
                     className="card-footer-item"
                   >
                     Go to issues
