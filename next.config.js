@@ -5,6 +5,7 @@ const nextConfig = {
     appDir: true,
   },
   output: 'standalone',
+  transpilePackages: ['jira.js'],
 };
 
 module.exports = nextConfig;

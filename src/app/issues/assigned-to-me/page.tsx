@@ -1,6 +1,6 @@
 import Table from '@/app/components/Table';
-import jiraClient from '@/services/jiraClient';
 import { Component } from 'jira.js/out/version3/models';
+import { searchForIssuesUsingJql } from '@/services/jiraSearchJql';
 
 export const metadata = {
   title: 'LXC Extension Jira Viewer - Issues Assigned to Me',
@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 const getIssues = async () => {
-  const response = await jiraClient.issueSearch.searchForIssuesUsingJql({
+  const response = await searchForIssuesUsingJql({
     jql: 'assignee = currentUser() and status not in (Closed) order by created DESC',
   });
 

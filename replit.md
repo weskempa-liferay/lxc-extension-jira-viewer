@@ -132,13 +132,20 @@ JIRA_CLIENT_VERSION=v3  # v3 for Jira Cloud, v2 for Jira Server
 
 ## Replit-Specific Configuration
 
-**Recent Changes** (October 24, 2025): Migrated from Vercel to Replit
+**Recent Changes** (October 24, 2025): Migrated from Vercel to Replit & Updated Jira API
 
 **Development Environment**:
 - Modified `package.json` scripts to bind to port 5000 with host 0.0.0.0 for Replit's environment
 - Added `output: 'standalone'` to `next.config.js` for optimized containerized builds
 - Configured workflow to run `yarn dev` with automatic restart on port 5000
 - All Jira credentials stored securely in Replit Secrets as environment variables
+- **Updated to JIRA_CLIENT_VERSION=v3** for Jira Cloud compatibility
+
+**Jira API Migration (CHANGE-2046)**:
+- Migrated from deprecated `/rest/api/3/search` endpoint to new `/rest/api/3/search/jql` endpoint
+- Created custom `jiraSearchJql.ts` wrapper to call the new endpoint directly
+- The new endpoint uses token-based pagination (`nextPageToken`) instead of offset-based (`startAt`)
+- By default, new endpoint only returns issue IDs; must explicitly request fields using `fields: ['*navigable']`
 
 **Deployment Configuration**:
 - Deployment target: `autoscale` (suitable for stateless web applications)

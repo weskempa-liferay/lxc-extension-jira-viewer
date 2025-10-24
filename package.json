@@ -15,7 +15,7 @@
     "bulma": "^0.9.4",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
-    "jira.js": "^2.16.1",
+    "jira.js": "2.16.1",
     "next": "^13.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

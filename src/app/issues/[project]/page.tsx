@@ -1,6 +1,7 @@
 import Table from '@/app/components/Table';
 import Card from '@/app/components/Card';
 import jiraClient from '@/services/jiraClient';
+import { searchForIssuesUsingJql } from '@/services/jiraSearchJql';
 
 export const metadata = {
   title: 'LXC Extension Jira Viewer - Issues Types',
@@ -19,7 +20,7 @@ async function getIssueTypes(projectIdOrKey: string) {
 
 async function getIssues(projectIdOrKey: string) {
 
-  const searchResult = await jiraClient.issueSearch.searchForIssuesUsingJql({
+  const searchResult = await searchForIssuesUsingJql({
     jql: 'project='+projectIdOrKey
   });
 
