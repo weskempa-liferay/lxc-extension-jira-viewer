@@ -3,6 +3,7 @@ import Card from '@/app/components/Card';
 import jiraClient from '@/services/jiraClient';
 import { searchForIssuesUsingJql } from '@/services/jiraSearchJql';
 import { adfToPlainText } from '@/utils/adfToText';
+import { truncateText, formatDate } from '@/utils/formatters';
 
 export const metadata = {
   title: 'LXC Extension Jira Viewer - Issues Types',
@@ -22,7 +23,7 @@ async function getIssueTypes(projectIdOrKey: string) {
 async function getIssues(projectIdOrKey: string) {
 
   const searchResult = await searchForIssuesUsingJql({
-    jql: 'project='+projectIdOrKey
+    jql: `project=${projectIdOrKey} ORDER BY created DESC`
   });
 
   let issueArray: any[] = [];
@@ -30,10 +31,12 @@ async function getIssues(projectIdOrKey: string) {
   if(searchResult.issues){
     for(const key in searchResult.issues){
 
-      let fields = {issuetype:{name:""},status:{name:""},description:"",summary:""};
+      let fields = {issuetype:{name:""},status:{name:""},description:"",summary:"",created:""};
       if(searchResult.issues[key].fields){
         fields = searchResult.issues[key].fields;
       }
+
+      const fullDescription = adfToPlainText(fields.description);
 
       const issueObject = {
         id:searchResult.issues[key].id,
@@ -41,7 +44,9 @@ async function getIssues(projectIdOrKey: string) {
         status:fields.status.name,
         type:fields.issuetype.name,
         summary:fields.summary,
-        description: adfToPlainText(fields.description),
+        description: fullDescription,
+        descriptionTruncated: truncateText(fullDescription, 150),
+        created: formatDate(fields.created),
       };
 
       issueArray.push(issueObject);
@@ -72,7 +77,7 @@ export default async function Page({ params: { project } }: PageProps) {
           columns={[
             { 
               key: 'key', 
-              width: 90, 
+              width: 100, 
               value: 'Key',
               render: (value: string) => (
                 <a 
@@ -85,10 +90,18 @@ export default async function Page({ params: { project } }: PageProps) {
                 </a>
               )
             },
-            { key: 'type', width: 150, value: 'Type' },
-            { key: 'status', width: 90, value: 'Status' },
-            { key: 'summary', value: 'Title' },
-            { key: 'description', value: 'Description' }
+            { key: 'type', width: 140, value: 'Type' },
+            { key: 'status', width: 110, value: 'Status' },
+            { key: 'summary', width: 200, value: 'Title' },
+            { 
+              key: 'descriptionTruncated', 
+              width: 250, 
+              value: 'Description',
+              render: (value: string, row: any) => (
+                <span title={row.description}>{value}</span>
+              )
+            },
+            { key: 'created', width: 110, value: 'Created' }
           ]}
           rows={issues}
         />
