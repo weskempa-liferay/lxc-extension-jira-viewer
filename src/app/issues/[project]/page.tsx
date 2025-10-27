@@ -2,6 +2,7 @@ import Table from '@/app/components/Table';
 import Card from '@/app/components/Card';
 import jiraClient from '@/services/jiraClient';
 import { searchForIssuesUsingJql } from '@/services/jiraSearchJql';
+import { adfToPlainText } from '@/utils/adfToText';
 
 export const metadata = {
   title: 'LXC Extension Jira Viewer - Issues Types',
@@ -40,9 +41,7 @@ async function getIssues(projectIdOrKey: string) {
         status:fields.status.name,
         type:fields.issuetype.name,
         summary:fields.summary,
-        description: typeof fields.description === 'string' 
-          ? fields.description 
-          : (fields.description ? '[Rich text description]' : ''),
+        description: adfToPlainText(fields.description),
       };
 
       issueArray.push(issueObject);
