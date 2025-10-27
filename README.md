@@ -1,6 +1,6 @@
 # LXC Extension Jira Viewer
 
-LXC Client Extension with Jira Integration using Next 13 and Jira API.
+LXC Client Extension with Jira Integration using Next 16 and Jira API v3.
 
 It is increasingly critical for teams to explore the practical use of Client Extensions. To assist in this, more working examples are needed. This is a working version of an LXC Client Extension with Jira integration using Next 13 and the Jira API. This project can be used as a template to work from for further Jira integration or to integrate with similar service outcomes.
 
@@ -30,6 +30,6 @@ It is increasingly critical for teams to explore the practical use of Client Ext
 4. Go to a page > edit > find the portlet created > drag it to the page
 
 ### Key Features
-* Next 13
+* Next 16
 * Turbo
 * React
