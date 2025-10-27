@@ -18,7 +18,6 @@ It is increasingly critical for teams to explore the practical use of Client Ext
 
 1. Copy the file `.env.example` and rename it to `.env`
 2. Add Jira Credentials to .env file.
-3. AFAIK, set `JIRA_CLIENT_VERSION`**v3** if you are using *Jira Cloud*, otherwise use **v2** 
 
 ### Adding it to Liferay Portal
 
