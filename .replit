@@ -41,10 +41,6 @@ externalPort = 80
 localPort = 40069
 externalPort = 3000
 
-[[ports]]
-localPort = 43651
-externalPort = 3002
-
 [deployment]
 deploymentTarget = "autoscale"
 run = ["yarn", "start"]
