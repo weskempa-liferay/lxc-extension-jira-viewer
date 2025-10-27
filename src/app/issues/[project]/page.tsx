@@ -70,11 +70,10 @@ export default async function Page({ params: { project } }: PageProps) {
       <Card title='Issues' className="mb-4">
         <Table
           columns={[
-            { key: 'key', width: 90, value: 'Key' },
-            { key: 'type', width: 150, value: 'Type' },
-            { key: 'status', width: 90, value: 'Status' },
-            { key: 'summary', value: 'Title' },
-            { key: 'description', value: 'Description' },
+            { key: 'key', value: 'Key' },
+            { key: 'type', value: 'Type' },
+            { key: 'status', value: 'Status' },
+            { key: 'summary', value: 'Title' }
           ]}
           rows={issues}
         />
