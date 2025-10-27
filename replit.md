@@ -161,8 +161,10 @@ JIRA_CLIENT_VERSION=v3  # v3 for Jira Cloud, v2 for Jira Server
 - Deployment target: `autoscale` (suitable for stateless web applications)
 - Build command: `yarn build`
 - Start command: `yarn start` (binds to port 5000 on 0.0.0.0)
+- **Next.js Version Pinning**: Next.js is pinned to exactly `13.2.3` (no caret) to ensure consistent behavior across Replit and Liferay PAAS environments. This prevents Liferay PAAS from auto-upgrading to newer versions that don't support the `experimental.appDir` flag.
 
 **Important Notes**:
 - The project structure remains unchanged to maintain compatibility with Liferay PAAS deployment
 - The Dockerfile and LCP.json files are preserved for Liferay Cloud Platform deployment
 - Replit configuration only affects local development environment, not production deployment to Liferay
+- Next.js 13.2.3 requires the `experimental.appDir` flag; newer versions (13.4+) have made the App Router stable and don't need this flag
