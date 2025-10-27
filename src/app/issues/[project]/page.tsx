@@ -5,7 +5,7 @@ import { searchForIssuesUsingJql } from '@/services/jiraSearchJql';
 
 export const metadata = {
   title: 'LXC Extension Jira Viewer - Issues Types',
-  description: 'LXC - Client Extensions and Next 13',
+  description: 'LXC - Client Extensions and Next 16',
 };
 
 async function getIssueTypes(projectIdOrKey: string) {

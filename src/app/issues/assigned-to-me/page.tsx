@@ -6,7 +6,7 @@ import { truncateText, formatDate } from '@/utils/formatters';
 
 export const metadata = {
   title: 'LXC Extension Jira Viewer - Issues Assigned to Me',
-  description: 'LXC - Client Extensions and Next 13',
+  description: 'LXC - Client Extensions and Next 16',
 };
 
 const getIssues = async () => {

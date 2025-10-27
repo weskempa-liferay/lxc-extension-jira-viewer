@@ -5,7 +5,7 @@ import Card from './components/Card';
 
 export const metadata = {
   title: 'LXC Extension Jira Viewer',
-  description: 'LXC - Client Extensions and Next 13',
+  description: 'LXC - Client Extensions and Next 16',
 };
 
 async function getProjects(): Promise<{ projects: Project[]; error: string | null }> {
