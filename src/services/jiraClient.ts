@@ -1,4 +1,4 @@
-import { Version2Client, Version3Client, Config } from 'jira.js';
+import { Version3Client, Config } from 'jira.js';
 
 const apiToken = process.env.JIRA_API_TOKEN;
 const apiVersion = process.env.JIRA_CLIENT_VERSION;
@@ -20,9 +20,7 @@ if (!host || !username || !apiToken) {
   console.error('JIRA_API_TOKEN:', !!apiToken);
 }
 
-const VersionClient = apiVersion === 'v3' ? Version3Client : Version2Client;
-
-const jiraClient = new VersionClient({
+const jiraClient = new Version3Client({
   host,
   authentication: {
     basic: {
