@@ -1,6 +1,8 @@
 import Table from '@/app/components/Table';
 import { Component } from 'jira.js/out/version3/models';
 import { searchForIssuesUsingJql } from '@/services/jiraSearchJql';
+import { adfToPlainText } from '@/utils/adfToText';
+import { truncateText, formatDate } from '@/utils/formatters';
 
 export const metadata = {
   title: 'LXC Extension Jira Viewer - Issues Assigned to Me',
@@ -14,20 +16,27 @@ const getIssues = async () => {
 
   const issues = (response.issues ?? []).map(
     ({
-      fields: { assignee, components, status, reporter, summary },
+      fields: { assignee, components, status, reporter, summary, description, issuetype, created },
       id,
       key,
       ...rest
-    }) => ({
-      assignee,
-      id,
-      key,
-      components,
-      status,
-      reporter,
-      rest,
-      summary,
-    })
+    }) => {
+      const fullDescription = adfToPlainText(description);
+      return {
+        assignee,
+        id,
+        key,
+        components,
+        status,
+        reporter,
+        rest,
+        summary,
+        type: issuetype?.name || '',
+        description: fullDescription,
+        descriptionTruncated: truncateText(fullDescription, 150),
+        created: formatDate(created),
+      };
+    }
   );
 
   return issues;
@@ -35,6 +44,7 @@ const getIssues = async () => {
 
 export default async function AssignedToMe() {
   const issues = await getIssues();
+  const jiraHost = process.env.JIRA_HOST;
 
   return (
     <div>
@@ -42,33 +52,38 @@ export default async function AssignedToMe() {
 
       <Table
         columns={[
-          { key: 'key', value: 'Key', width: 150 },
-          { key: 'summary', value: 'Project', width: 300 },
-          {
-            key: 'components',
-            value: 'Components',
-            render: (components) => (
-              <>
-                {(components as Component[]).map(
-                  (component, componentIndex) => (
-                    <span className="tag mr-2" key={componentIndex}>
-                      {component.name}
-                    </span>
-                  )
-                )}
-              </>
-            ),
+          { 
+            key: 'key', 
+            value: 'Key', 
+            width: 100,
+            render: (value: string) => (
+              <a 
+                href={`${jiraHost}/browse/${value}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="has-text-link"
+              >
+                {value}
+              </a>
+            )
           },
+          { key: 'type', value: 'Type', width: 140 },
           {
             key: 'status',
             value: 'Status',
+            width: 110,
             render: (status) => <span className="tag">{status?.name}</span>,
           },
-          {
-            key: 'assignee',
-            value: 'Owner',
-            render: (assignee) => assignee.name,
+          { key: 'summary', value: 'Title', width: 200 },
+          { 
+            key: 'descriptionTruncated', 
+            width: 250, 
+            value: 'Description',
+            render: (value: string, row: any) => (
+              <span title={row.description}>{value}</span>
+            )
           },
+          { key: 'created', value: 'Created', width: 110 },
         ]}
         rows={issues}
       />

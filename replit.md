@@ -132,7 +132,7 @@ JIRA_CLIENT_VERSION=v3  # v3 for Jira Cloud, v2 for Jira Server
 
 ## Replit-Specific Configuration
 
-**Recent Changes** (October 24, 2025): Migrated from Vercel to Replit & Updated Jira API
+**Recent Changes** (October 27, 2025): Table Improvements & UX Enhancements
 
 **Development Environment**:
 - Modified `package.json` scripts to bind to port 5000 with host 0.0.0.0 for Replit's environment
@@ -146,6 +146,16 @@ JIRA_CLIENT_VERSION=v3  # v3 for Jira Cloud, v2 for Jira Server
 - Created custom `jiraSearchJql.ts` wrapper to call the new endpoint directly
 - The new endpoint uses token-based pagination (`nextPageToken`) instead of offset-based (`startAt`)
 - By default, new endpoint only returns issue IDs; must explicitly request fields using `fields: ['*navigable']`
+
+**Table Enhancements (October 27, 2025)**:
+- **ADF Text Extraction**: Created `adfToPlainText` utility in `src/utils/adfToText.ts` to convert Atlassian Document Format to readable plain text for issue descriptions
+- **Description Truncation**: Added `truncateText` helper in `src/utils/formatters.ts` to limit descriptions to 150 characters with ellipsis, preventing tables from becoming too large
+- **Hover Tooltips**: Full descriptions appear on hover using HTML `title` attributes on truncated text
+- **Newest Tickets First**: Updated JQL queries to include `ORDER BY created DESC` ensuring most recent issues display at the top
+- **Created Date Column**: Added formatted creation dates to all issue tables using `formatDate` helper (e.g., "Oct 27, 2025")
+- **Clickable Ticket Keys**: Ticket keys are now clickable links that open Jira tickets in new tabs with proper security attributes (`rel="noopener noreferrer"`)
+- **Column Reordering**: Improved table layout with logical flow: Key → Type → Status → Title → Description → Created
+- **DRY Utilities**: Centralized shared helper functions (`truncateText`, `formatDate`) in `src/utils/formatters.ts` to avoid code duplication
 
 **Deployment Configuration**:
 - Deployment target: `autoscale` (suitable for stateless web applications)
