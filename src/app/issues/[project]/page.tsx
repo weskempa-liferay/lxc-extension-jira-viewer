@@ -61,6 +61,7 @@ type PageProps = {
 export default async function Page({ params: { project } }: PageProps) {
   const issues = await getIssues(project);
   const issueTypes = await getIssueTypes(project);
+  const jiraHost = process.env.JIRA_HOST;
 
   return (
     <div className="mt-2">
@@ -69,10 +70,25 @@ export default async function Page({ params: { project } }: PageProps) {
       <Card title='Issues' className="mb-4">
         <Table
           columns={[
-            { key: 'key', value: 'Key' },
-            { key: 'type', value: 'Type' },
-            { key: 'status', value: 'Status' },
-            { key: 'summary', value: 'Title' }
+            { 
+              key: 'key', 
+              width: 90, 
+              value: 'Key',
+              render: (value: string) => (
+                <a 
+                  href={`${jiraHost}/browse/${value}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="has-text-link"
+                >
+                  {value}
+                </a>
+              )
+            },
+            { key: 'type', width: 150, value: 'Type' },
+            { key: 'status', width: 90, value: 'Status' },
+            { key: 'summary', value: 'Title' },
+            { key: 'description', value: 'Description' }
           ]}
           rows={issues}
         />
