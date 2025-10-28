@@ -11,7 +11,7 @@ export const metadata = {
 
 const getIssues = async () => {
   const response = await searchForIssuesUsingJql({
-    jql: 'assignee = currentUser() and status not in (Closed) order by created DESC',
+    jql: 'assignee = currentUser() order by created DESC',
   });
 
   const issues = (response.issues ?? []).map(
